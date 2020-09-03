@@ -1,0 +1,22 @@
+syntax = "proto3"; //说明使用proto3语法定义协议
+
+package com.qlisv.grpc.ocr; // 包名，注意与所在文件夹保持一致
+
+service Ocrapi {
+
+    // 用于识别单色图片上的文字，不包含表情的图片
+    rpc getText (ImgRequest) returns (ImgResponse) {}
+
+    // 用于识别复杂的彩色图片上的文字
+    rpc getImgText (ImgRequest) returns (ImgResponse) {}
+}
+
+message ImgRequest {
+    // 文件地址
+    string imgPath = 1;
+}
+
+message ImgResponse {
+    // 识别到的文本内容
+    string content = 1;
+}
